@@ -1,11 +1,83 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { BadgeCheck, Play } from 'lucide-react'
-import { artistProfile, playlists, skills } from '@/data/portfolio'
+import { BadgeCheck, Code2, Link2, Mail, Play } from 'lucide-react'
+import { PlaylistCover } from '@/components/PlaylistCover'
+import {
+  artistProfile,
+  contact,
+  getExperiencePlaylists,
+  getPlaylist,
+  getPlaylistsByType,
+  skills,
+} from '@/data/portfolio'
 import { usePlayer } from '@/hooks/usePlayer'
+import type { Skill } from '@/data/portfolio'
+
+const SKILL_GROUPS: { id: Skill['category']; label: string }[] = [
+  { id: 'language', label: 'Languages & frameworks' },
+  { id: 'tool', label: 'Tools & cloud' },
+]
+
+function SkillsByGroup() {
+  return (
+    <div className="space-y-6">
+      {SKILL_GROUPS.map(({ id, label }) => {
+        const group = skills
+          .filter((s) => s.category === id)
+          .sort((a, b) => b.level - a.level)
+
+        if (group.length === 0) return null
+
+        return (
+          <div key={id}>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-500">
+              {label}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {group.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-neutral-200 transition-colors hover:border-[#1db954]/40 hover:bg-[#3e3e3e] hover:text-white"
+                >
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function DiscographyGrid({ items }: { items: ReturnType<typeof getPlaylistsByType> }) {
+  if (items.length === 0) return null
+
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((p) => (
+        <Link
+          key={p.slug}
+          to={`/playlist/${p.slug}`}
+          className="group rounded-lg bg-[#181818] p-4 transition-colors hover:bg-[#282828]"
+        >
+          <div className="mb-3 aspect-square overflow-hidden rounded-md">
+            <PlaylistCover item={p} iconClassName="h-10 w-10" />
+          </div>
+          <p className="font-semibold text-white group-hover:text-[#1db954]">{p.title}</p>
+          <p className="text-xs text-neutral-400">{p.subtitle}</p>
+        </Link>
+      ))}
+    </div>
+  )
+}
+
 export default function ArtistPage() {
   const { play } = usePlayer()
-  const popularTracks = skills.slice(0, 5)
+  const projects = getPlaylistsByType('project')
+  const websites = getPlaylistsByType('website')
+  const experience = getExperiencePlaylists()
+  const education = getPlaylist('education')
 
   return (
     <motion.div
@@ -35,6 +107,33 @@ export default function ArtistPage() {
               )}
             </h1>
             <p className="mt-2 text-sm text-neutral-300">{artistProfile.monthlyListeners}</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+              <a
+                href={contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#3e3e3e]"
+              >
+                <Link2 className="h-4 w-4 text-[#1db954]" />
+                LinkedIn
+              </a>
+              <a
+                href={contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#3e3e3e]"
+              >
+                <Code2 className="h-4 w-4 text-neutral-300" />
+                GitHub
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#3e3e3e]"
+              >
+                <Mail className="h-4 w-4 text-neutral-300" />
+                Email
+              </a>
+            </div>
           </div>
         </div>
       </header>
@@ -59,47 +158,69 @@ export default function ArtistPage() {
           ))}
         </section>
 
-        <section className="mb-10">
-          <h2 className="mb-4 text-xl font-bold text-white">Popular tracks</h2>
-          <ol className="space-y-1">
-            {popularTracks.map((skill, i) => (
-              <li
-                key={skill.name}
-                className="group flex items-center gap-4 rounded-md p-2 hover:bg-[#282828]"
-              >
-                <span className="w-6 text-center text-sm text-neutral-500">{i + 1}</span>
-                <div className="flex h-10 w-10 items-center justify-center rounded bg-[#282828] text-xs font-bold text-[#1db954]">
-                  {skill.level}%
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-medium text-white">{skill.name}</p>
-                  <p className="text-xs text-neutral-400 capitalize">{skill.category}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+        <section id="skills" className="mb-10 scroll-mt-24">
+          <h2 className="mb-5 text-xl font-bold text-white">Skills</h2>
+          <SkillsByGroup />
         </section>
 
-        <section>
-          <h2 className="mb-4 text-xl font-bold text-white">Discography</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {playlists.map((p) => (
+        <section className="mb-10">
+          <h2 className="mb-4 text-xl font-bold text-white">Experience</h2>
+          <div className="space-y-3">
+            {experience.map((job) => (
               <Link
-                key={p.slug}
-                to={`/playlist/${p.slug}`}
-                className="group rounded-lg bg-[#181818] p-4 transition-colors hover:bg-[#282828]"
+                key={job.slug}
+                to={`/playlist/${job.slug}`}
+                className="group flex items-center gap-4 rounded-lg bg-[#181818] p-4 transition-colors hover:bg-[#282828]"
               >
-                <div
-                  className="mb-3 aspect-square rounded-md"
-                  style={{
-                    background: `linear-gradient(135deg, ${p.gradientFrom}, ${p.gradientTo})`,
-                  }}
-                />
-                <p className="font-semibold text-white group-hover:text-[#1db954]">{p.title}</p>
-                <p className="text-xs text-neutral-400">{p.subtitle}</p>
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md">
+                  <PlaylistCover item={job} iconClassName="h-8 w-8" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-white group-hover:text-[#1db954]">{job.title}</p>
+                  <p className="text-sm text-neutral-400">
+                    {job.employer}
+                    {job.period && ` · ${job.period}`}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
+        </section>
+
+        {education && (
+          <section className="mb-10">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-xl font-bold text-white">Education</h2>
+              <Link
+                to={`/playlist/${education.slug}`}
+                className="text-sm font-medium text-[#1db954] hover:underline"
+              >
+                View details
+              </Link>
+            </div>
+            <Link
+              to={`/playlist/${education.slug}`}
+              className="group flex items-center gap-4 rounded-lg bg-[#181818] p-4 transition-colors hover:bg-[#282828]"
+            >
+              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md">
+                <PlaylistCover item={education} iconClassName="h-8 w-8" />
+              </div>
+              <div>
+                <p className="font-semibold text-white group-hover:text-[#1db954]">{education.title}</p>
+                <p className="text-sm text-neutral-400">{education.subtitle}</p>
+              </div>
+            </Link>
+          </section>
+        )}
+
+        <section className="mb-10">
+          <h2 className="mb-4 text-xl font-bold text-white">Projects</h2>
+          <DiscographyGrid items={projects} />
+        </section>
+
+        <section>
+          <h2 className="mb-4 text-xl font-bold text-white">Websites</h2>
+          <DiscographyGrid items={websites} />
         </section>
       </div>
     </motion.div>

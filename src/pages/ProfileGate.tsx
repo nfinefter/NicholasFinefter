@@ -1,42 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Briefcase, Compass, Users } from 'lucide-react'
+import { profiles } from '@/data/portfolio'
+import { useProfile } from '@/hooks/useProfile'
+import { getProfileIcon } from '@/lib/icons'
 import { cn } from '@/lib/utils'
-
-const PROFILE_KEY = 'portfolio-profile'
-
-export type ProfileId = 'recruiter' | 'client' | 'explorer'
-
-const profiles: {
-  id: ProfileId
-  label: string
-  hint: string
-  icon: typeof Briefcase
-  accent: string
-}[] = [
-  {
-    id: 'recruiter',
-    label: 'Recruiter',
-    hint: 'Hiring focus',
-    icon: Briefcase,
-    accent: 'from-green-500 to-emerald-700',
-  },
-  {
-    id: 'client',
-    label: 'Client',
-    hint: 'Project outcomes',
-    icon: Users,
-    accent: 'from-blue-500 to-indigo-700',
-  },
-  {
-    id: 'explorer',
-    label: 'Explorer',
-    hint: 'Full portfolio',
-    icon: Compass,
-    accent: 'from-violet-500 to-purple-700',
-  },
-]
 
 const container = {
   hidden: { opacity: 0 },
@@ -53,19 +21,16 @@ const item = {
 
 export default function ProfileGate() {
   const navigate = useNavigate()
+  const { profile, setProfile } = useProfile()
 
   useEffect(() => {
-    const existing = localStorage.getItem(PROFILE_KEY)
-    const valid = profiles.some((p) => p.id === existing)
-    if (valid) {
+    if (profile) {
       navigate('/browse', { replace: true })
-    } else if (existing) {
-      localStorage.removeItem(PROFILE_KEY)
     }
-  }, [navigate])
+  }, [profile, navigate])
 
-  const selectProfile = (id: ProfileId) => {
-    localStorage.setItem(PROFILE_KEY, id)
+  const selectPerspective = (id: (typeof profiles)[number]['id']) => {
+    setProfile(id)
     navigate('/browse', { replace: true })
   }
 
@@ -82,7 +47,7 @@ export default function ProfileGate() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        Who&apos;s listening?
+        Who&apos;s viewing?
       </motion.h1>
       <motion.p
         className="mb-12 max-w-md text-center text-sm text-neutral-400 md:text-base"
@@ -90,7 +55,7 @@ export default function ProfileGate() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        Pick a profile to tailor what you see first.
+        Pick a perspective — each subagent tailors what you see first.
       </motion.p>
 
       <motion.div
@@ -99,14 +64,14 @@ export default function ProfileGate() {
         initial="hidden"
         animate="show"
       >
-        {profiles.map((profile) => {
-          const Icon = profile.icon
+        {profiles.map((perspective) => {
+          const Icon = getProfileIcon(perspective.icon)
           return (
             <motion.button
-              key={profile.id}
+              key={perspective.id}
               type="button"
               variants={item}
-              onClick={() => selectProfile(profile.id)}
+              onClick={() => selectPerspective(perspective.id)}
               className="group flex flex-col items-center gap-4 rounded-xl border border-transparent bg-transparent p-4 outline-none focus-visible:ring-2 focus-visible:ring-[#1ed760] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.96 }}
@@ -114,7 +79,7 @@ export default function ProfileGate() {
               <motion.div
                 className={cn(
                   'flex h-28 w-28 items-center justify-center rounded-md bg-gradient-to-br shadow-lg transition-shadow duration-300 md:h-32 md:w-32',
-                  profile.accent,
+                  perspective.accent,
                   'group-hover:shadow-[0_0_32px_rgba(30,215,96,0.25)]',
                 )}
               >
@@ -122,9 +87,9 @@ export default function ProfileGate() {
               </motion.div>
               <motion.div className="text-center">
                 <p className="text-lg font-semibold text-neutral-300 transition-colors group-hover:text-white">
-                  {profile.label}
+                  {perspective.label}
                 </p>
-                <p className="mt-1 text-xs text-neutral-500">{profile.hint}</p>
+                <p className="mt-1 text-xs text-neutral-500">{perspective.hint}</p>
               </motion.div>
             </motion.button>
           )

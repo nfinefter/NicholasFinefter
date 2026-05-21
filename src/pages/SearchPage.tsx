@@ -2,10 +2,11 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Search as SearchIcon } from 'lucide-react'
-import { playlists, skills, focusAreas } from '@/data/portfolio'
+import { PlaylistCover } from '@/components/PlaylistCover'
+import { focusAreas, PLAYLIST_TYPE_LABELS, playlists, skills } from '@/data/portfolio'
 import { cn } from '@/lib/utils'
 
-type Category = 'all' | 'projects' | 'websites' | 'skills'
+type Category = 'all' | 'projects' | 'websites' | 'experience' | 'skills'
 
 export default function SearchPage() {
   const [query, setQuery] = useState('')
@@ -16,17 +17,20 @@ export default function SearchPage() {
     const playlistResults = playlists.filter((p) => {
       if (category === 'projects' && p.type !== 'project') return false
       if (category === 'websites' && p.type !== 'website') return false
+      if (category === 'experience' && p.type !== 'experience') return false
       if (category === 'skills') return false
       if (!q) return true
       return (
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
-        p.tags.some((t) => t.toLowerCase().includes(q))
+        p.tags.some((t) => t.toLowerCase().includes(q)) ||
+        p.employer?.toLowerCase().includes(q) ||
+        p.period?.toLowerCase().includes(q)
       )
     })
 
     const skillResults =
-      category === 'websites'
+      category === 'websites' || category === 'experience'
         ? []
         : [...skills.map((s) => s.name), ...focusAreas].filter((name) => {
             if (category === 'projects') return false
@@ -65,6 +69,7 @@ export default function SearchPage() {
             ['all', 'All'],
             ['projects', 'Projects'],
             ['websites', 'Websites'],
+            ['experience', 'Experience'],
             ['skills', 'Skills'],
           ] as const
         ).map(([id, label]) => (
@@ -96,10 +101,15 @@ export default function SearchPage() {
                     to={`/playlist/${p.slug}`}
                     className="flex items-center gap-4 rounded-md p-2 hover:bg-[#282828]"
                   >
-                    <div className={cn('h-12 w-12 shrink-0 rounded', p.mesh)} />
+                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded">
+                      <PlaylistCover item={p} iconClassName="h-6 w-6" />
+                    </div>
                     <div>
                       <p className="font-medium text-white">{p.title}</p>
-                      <p className="text-sm text-neutral-400">{p.subtitle}</p>
+                      <p className="text-sm text-neutral-400">
+                        {p.subtitle}
+                        <span className="text-neutral-500"> · {PLAYLIST_TYPE_LABELS[p.type]}</span>
+                      </p>
                     </div>
                   </Link>
                 ))}
@@ -111,9 +121,13 @@ export default function SearchPage() {
               <h2 className="mb-4 text-lg font-bold text-white">Skills & focus</h2>
               <div className="flex flex-wrap gap-2">
                 {results.skills.map((s) => (
-                  <span key={s} className="rounded-full bg-[#282828] px-4 py-2 text-sm text-white">
+                  <Link
+                    key={s}
+                    to="/artist/me#skills"
+                    className="rounded-full bg-[#282828] px-4 py-2 text-sm text-white transition-colors hover:bg-[#3e3e3e]"
+                  >
                     {s}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </section>

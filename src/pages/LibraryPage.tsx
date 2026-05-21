@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
+import { PlaylistCover } from '@/components/PlaylistCover'
 import { playlists } from '@/data/portfolio'
 import { useLiked } from '@/hooks/useLiked'
 import { cn } from '@/lib/utils'
@@ -59,7 +60,9 @@ export default function LibraryPage() {
             className="group flex items-center gap-4 rounded-md p-2 hover:bg-[#282828]"
           >
             <Link to={`/playlist/${p.slug}`} className="flex flex-1 items-center gap-4">
-              <div className={cn('h-14 w-14 shrink-0 rounded', p.mesh)} />
+              <div className="h-14 w-14 shrink-0 overflow-hidden rounded">
+                <PlaylistCover item={p} iconClassName="h-7 w-7" />
+              </div>
               <div className="min-w-0">
                 <p className="truncate font-medium text-white">{p.title}</p>
                 <p className="text-sm text-neutral-400">

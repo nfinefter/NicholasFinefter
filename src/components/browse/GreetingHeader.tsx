@@ -12,17 +12,14 @@ function getTimeBasedGreeting(): string {
 }
 
 interface GreetingHeaderProps {
-  name?: string
   className?: string
 }
 
-export default function GreetingHeader({
-  name = 'Nicholas',
-  className,
-}: GreetingHeaderProps) {
+export default function GreetingHeader({ className }: GreetingHeaderProps) {
   const greeting = getTimeBasedGreeting()
   const { profile } = useProfile()
   const profileMeta = profiles.find((p) => p.id === profile)
+  const displayName = profileMeta?.label ?? 'Guest'
 
   return (
     <motion.header
@@ -33,7 +30,7 @@ export default function GreetingHeader({
     >
       <h1 className="text-2xl font-bold tracking-tight text-white md:text-4xl">
         {greeting}
-        <span className="text-neutral-400">, {name}</span>
+        <span className="text-neutral-400">, {displayName}</span>
       </h1>
       {profileMeta && (
         <p className="mt-2 max-w-xl text-sm text-neutral-400 md:text-base">{profileMeta.greeting}</p>

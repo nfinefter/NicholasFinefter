@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { PlaylistCover } from '@/components/PlaylistCover'
 import { cn } from '@/lib/utils'
-import type { CardVariant, Playlist } from '@/data/portfolio'
+import { PLAYLIST_TYPE_LABELS, type CardVariant, type Playlist } from '@/data/portfolio'
 
 interface MediaCardProps {
   item: Playlist
@@ -29,23 +30,22 @@ export default function MediaCard({
         <motion.div
           className={cn(
             'overflow-hidden rounded-md shadow-md transition-shadow duration-300 group-hover:shadow-[0_8px_32px_rgba(30,215,96,0.2)]',
-            item.mesh,
+            !item.image && item.mesh,
             isWide ? 'aspect-[2/1]' : 'aspect-square',
           )}
         >
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.title}
-              className="h-full w-full object-cover object-top"
-              loading="lazy"
-            />
-          )}
+          <PlaylistCover
+            item={item}
+            iconClassName={isWide ? 'h-12 w-12' : 'h-10 w-10'}
+          />
         </motion.div>
         <p className="mt-3 truncate text-sm font-semibold text-white group-hover:text-[#1ed760]">
           {item.title}
         </p>
-        <p className="mt-0.5 truncate text-xs text-neutral-400">{item.subtitle}</p>
+        <p className="mt-0.5 truncate text-xs text-neutral-400">
+          {item.subtitle}
+          <span className="text-neutral-500"> · {PLAYLIST_TYPE_LABELS[item.type]}</span>
+        </p>
       </Link>
     </motion.div>
   )

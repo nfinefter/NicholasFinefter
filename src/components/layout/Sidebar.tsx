@@ -7,6 +7,7 @@ import {
   Library,
   Search,
 } from "lucide-react";
+import { ProfileSwitcher } from "@/components/layout/ProfileSwitcher";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -85,6 +86,8 @@ export function Sidebar({ className }: { className?: string }) {
           <NavItem key={item.to} {...item} />
         ))}
       </div>
+
+      <ProfileSwitcher className="px-1" />
     </aside>
   );
 }
