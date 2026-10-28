@@ -61,7 +61,7 @@ export function MarkbaseDemo() {
             )}
             <div
               className={cn(
-                'max-w-[85%] rounded-lg px-3 py-2',
+                'max-w-[85%] whitespace-pre-line rounded-lg px-3 py-2',
                 msg.role === 'user'
                   ? 'bg-[#1db954]/20 text-white'
                   : 'bg-[#282828] text-neutral-200',
