@@ -63,8 +63,7 @@ export function CodeFuDemo() {
       </div>
 
       <p className="mt-4 text-xs text-neutral-500">
-        Teaching metaphor for event-driven logic — same patterns students use in Scratch and
-        later in real apps.
+        A simplified version of the message-passing projects my students build.
       </p>
     </div>
   )

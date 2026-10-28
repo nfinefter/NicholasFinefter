@@ -28,9 +28,6 @@ export interface PlaylistItem {
   period?: string
 }
 
-/** @deprecated Use PlaylistItem */
-export type Playlist = PlaylistItem
-
 export type CardVariant = 'square' | 'wide'
 
 export interface BrowseRow {
@@ -56,18 +53,10 @@ export interface Profile {
   accent: string
 }
 
-/** Audience perspectives (subagents) that tailor the portfolio experience */
-export type Perspective = Profile
+export const fullName = 'Nicholas Finefter'
 
-export const person = {
-  shortName: 'Nicholas',
-  fullName: 'Nicholas Finefter',
-  tagline:
-    'Software engineering student building scalable full-stack applications with React, Express, and AWS — from QA discipline to shipped products.',
-}
-
-export const fullName = person.fullName
-export const tagline = person.tagline
+export const tagline =
+  'Software engineering student in Los Angeles. I build full-stack apps with React, Express and AWS, and I came up through QA, so I test what I ship.'
 
 export const contact = {
   email: 'nfinefter@gmail.com',
@@ -76,8 +65,9 @@ export const contact = {
 }
 
 export const aboutBio = [
-  'At ESHYFT I tested 50+ web and mobile features, executed 200+ manual and automated test cases, and caught 30+ critical defects pre-release — reducing production issues by 15% and helping releases ship 30% faster.',
-  'I now develop full-stack at Markbase Ai (React, Express, AWS, DynamoDB, Cognito), and build PulseDash, StockBot, and QuizBuddy — unified creator analytics, automated trading, and AI-powered study quizzes.',
+  'I started in QA at ESHYFT, where I tested 50+ web and mobile features, ran 200+ test cases and caught 30+ critical bugs before release. Production issues dropped 15% and releases went out 30% faster.',
+  'Right now I\'m a QA automation engineering intern at Moon, and I write full-stack code at Markbase Ai with React, Express, DynamoDB and Cognito. On the side I build projects like PulseDash, StockBot and QuizBuddy, and I teach kids to code at Code Fu.',
+  'I\'m finishing my bachelor\'s and master\'s in software engineering at WGU. I also speak English and Russian.',
 ]
 
 export const focusAreas = [
@@ -91,8 +81,6 @@ export const focusAreas = [
 ]
 
 export const featuredPlaylist = 'stockbot'
-export const featuredSlug = featuredPlaylist
-export const featuredPlaylistSlug = featuredPlaylist
 
 export const featuredByProfile: Record<ProfileType, string> = {
   recruiter: 'markbase',
@@ -119,7 +107,7 @@ export const profiles: Profile[] = [
     emoji: '💼',
     icon: 'briefcase',
     accent: 'from-green-500 to-emerald-700',
-    greeting: 'Skills and shipped projects — tuned for technical review.',
+    greeting: 'Experience and skills first.',
   },
   {
     id: 'client',
@@ -128,7 +116,7 @@ export const profiles: Profile[] = [
     emoji: '🤝',
     icon: 'users',
     accent: 'from-blue-500 to-indigo-700',
-    greeting: 'Outcomes, metrics, and website case studies front and center.',
+    greeting: 'Website work and results first.',
   },
   {
     id: 'explorer',
@@ -137,11 +125,9 @@ export const profiles: Profile[] = [
     emoji: '🧭',
     icon: 'compass',
     accent: 'from-violet-500 to-purple-700',
-    greeting: 'Everything — dig into demos and the full builder story.',
+    greeting: 'Everything, demos included.',
   },
 ]
-
-export const perspectives = profiles
 
 export const playlists: PlaylistItem[] = [
   {
@@ -150,7 +136,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'Automated trading',
     icon: 'stock',
     description:
-      'Python backend executes automated stock and cryptocurrency trades from dynamic strategy logic and real-time market data. React dashboard monitors portfolio performance, trading signals, and live positions via REST APIs.',
+      'A Python backend that places stock and crypto trades on its own, based on strategy logic and live market data. A React dashboard shows portfolio performance, signals and open positions over REST APIs.',
     type: 'project',
     gradientFrom: '#334155',
     gradientTo: '#064e3b',
@@ -189,7 +175,7 @@ export const playlists: PlaylistItem[] = [
       {
         id: 'sb-5',
         title: 'Integrated API endpoints',
-        subtitle: 'Frontend ↔ backend monitoring',
+        subtitle: 'Frontend and backend wired together',
         duration: '3:11',
       },
     ],
@@ -200,7 +186,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'Creator revenue dashboard',
     icon: 'chart',
     description:
-      'Unified creator analytics: link multiple social accounts, consolidate revenue streams in one dashboard, and surface actionable growth recommendations from engagement and earnings data.',
+      'A dashboard for creators. Link your social accounts, see all your revenue in one place, and get suggestions for growing your audience and earnings based on your engagement data.',
     type: 'project',
     gradientFrom: '#7c3aed',
     gradientTo: '#312e81',
@@ -251,7 +237,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'Adaptive quiz generator',
     icon: 'quiz',
     description:
-      'Upload study guides to automatically generate custom quizzes with dynamic content processing. Real-time feedback and answer evaluation with immediate explanations reinforce course material.',
+      'Upload a study guide and get a custom quiz back. Every answer is graded right away, with an explanation of why it is right or wrong.',
     type: 'project',
     gradientFrom: '#0891b2',
     gradientTo: '#0f172a',
@@ -301,7 +287,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'Client website · SFV electricians',
     icon: 'bolt',
     description:
-      'Client project (not listed on resume): end-to-end website rebuild for On Demand Electrical — licensed San Fernando Valley electricians with 24/7 emergency service, panel upgrades, EV chargers, installs, and free quotes.',
+      'A full website rebuild for On Demand Electrical, a licensed electrician in the San Fernando Valley. They do 24/7 emergency calls, panel upgrades, EV chargers and new installs, and give free quotes.',
     type: 'website',
     gradientFrom: '#d97706',
     gradientTo: '#713f12',
@@ -364,12 +350,42 @@ export const playlists: PlaylistItem[] = [
     ],
   },
   {
+    slug: 'moon',
+    title: 'Moon',
+    subtitle: 'QA Automation Engineering Intern',
+    icon: 'flask',
+    description:
+      'QA automation engineering intern on the engineering team at Moon, working out of the Glendale office.',
+    type: 'experience',
+    employer: 'Moon · Glendale, CA',
+    period: 'Jun 2026 – Present',
+    gradientFrom: '#64748b',
+    gradientTo: '#0f172a',
+    mesh: 'bg-gradient-to-br from-slate-500 via-slate-700 to-slate-950',
+    gradient: 'linear-gradient(135deg, #64748b, #0f172a)',
+    tags: ['QA', 'Test Automation'],
+    tracks: [
+      {
+        id: 'mo-1',
+        title: 'QA automation',
+        subtitle: 'Engineering team intern',
+        duration: '3:30',
+      },
+      {
+        id: 'mo-2',
+        title: 'Joined June 2026',
+        subtitle: 'Glendale, CA office',
+        duration: '2:22',
+      },
+    ],
+  },
+  {
     slug: 'markbase',
     title: 'Markbase Ai',
     subtitle: 'Full Stack Software Engineer (Intern to Part-Time)',
     icon: 'cloud',
     description:
-      'Develop full-stack features with React and Express, design RESTful APIs, deploy an AWS dev environment (DynamoDB, Cognito), build an AI agent acting as a CMO, and maintain a Postman test suite for prompt and API validation.',
+      'I build full-stack features in React and Express, design the REST APIs behind them, and run our AWS dev environment (DynamoDB, Cognito). I also built an AI agent that acts as a CMO, then wrote a Postman suite of 20+ tests to check its prompts and our APIs, which cut manual QA time by 35%.',
     type: 'experience',
     employer: 'Markbase Ai · Los Angeles, CA',
     period: 'Dec 2025 – Present',
@@ -383,31 +399,31 @@ export const playlists: PlaylistItem[] = [
       {
         id: 'mb-1',
         title: 'React & Express.js features',
-        subtitle: 'RESTful API design & integration',
+        subtitle: 'REST APIs for 100+ test users',
         duration: '4:12',
       },
       {
         id: 'mb-2',
         title: 'AWS development environment',
-        subtitle: 'Deploy & manage cloud infrastructure',
+        subtitle: 'Dedicated dev environment',
         duration: '3:45',
       },
       {
         id: 'mb-3',
         title: 'DynamoDB + Cognito',
-        subtitle: 'Data storage & secure authentication',
+        subtitle: 'Data storage and user auth',
         duration: '3:20',
       },
       {
         id: 'mb-4',
         title: 'AI agent (CMO)',
-        subtitle: 'Marketing department automation',
+        subtitle: 'Handles marketing tasks',
         duration: '2:58',
       },
       {
         id: 'mb-5',
         title: 'Postman test suite',
-        subtitle: 'Automated prompt & API validation',
+        subtitle: '20+ prompt & API tests · 35% less manual QA',
         duration: '3:33',
       },
     ],
@@ -418,7 +434,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'QA Engineer (Intern to Full-Time)',
     icon: 'shield',
     description:
-      'Tested 50+ web and mobile features with Postman and Swagger; spearheaded QA across releases with end-to-end, regression, and API testing. Led Bitwarden rollout for centralized credential security.',
+      'Tested 50+ web and mobile features with Postman and Swagger, and ran QA across several releases: end-to-end, regression and API testing alongside the devs and PMs. I also spotted a gap in how the team handled passwords and led the Bitwarden rollout that fixed it.',
     type: 'experience',
     employer: 'ESHYFT · Howell, NJ',
     period: 'Jul 2025 – Oct 2025',
@@ -450,7 +466,7 @@ export const playlists: PlaylistItem[] = [
       {
         id: 'es-4',
         title: '30% faster release cycle',
-        subtitle: 'Regression & API testing with dev/PM',
+        subtitle: 'Regression & API testing with devs and PMs',
         duration: '3:42',
       },
       {
@@ -473,7 +489,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'Senior Instructor',
     icon: 'bolt',
     description:
-      'Design Scratch Jr lesson plans covering sequencing, loops, conditionals, variables, and event handling. Teach students to translate requirements into code with iterative development and debugging; lead multi-sprite message-passing game projects.',
+      'I write lesson plans and projects for 20+ students covering sequencing, loops, conditionals, variables and events. I teach them to turn requirements into working code by iterating and debugging, run bigger projects where sprites pass messages to each other, and have helped students deploy their own apps.',
     type: 'experience',
     employer: 'Code Fu · Los Angeles, CA',
     period: 'Aug 2024 – Present',
@@ -482,11 +498,11 @@ export const playlists: PlaylistItem[] = [
     mesh: 'bg-gradient-to-br from-amber-500 via-orange-600 to-yellow-900',
     gradient: 'linear-gradient(135deg, #f59e0b, #b45309)',
     image: '/logos/code-fu.png',
-    tags: ['Scratch Jr', 'Curriculum', 'Teaching'],
+    tags: ['Scratch', 'Curriculum', 'Teaching'],
     tracks: [
       {
         id: 'cf-1',
-        title: 'Scratch Jr lesson plans',
+        title: 'Scratch lesson plans',
         subtitle: 'Sequencing & control flow fundamentals',
         duration: '3:20',
       },
@@ -499,19 +515,19 @@ export const playlists: PlaylistItem[] = [
       {
         id: 'cf-3',
         title: 'Event handling',
-        subtitle: 'Interactive Scratch Jr projects',
+        subtitle: 'Interactive Scratch projects',
         duration: '2:30',
       },
       {
         id: 'cf-4',
-        title: 'Requirements → working code',
+        title: 'Requirements to working code',
         subtitle: 'Iterative development & debugging',
         duration: '3:15',
       },
       {
         id: 'cf-5',
         title: 'Multi-sprite message-passing',
-        subtitle: 'Complex game logic & application state',
+        subtitle: 'Game logic & application state',
         duration: '3:10',
       },
     ],
@@ -522,7 +538,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: "Bachelor's & Master's · Associate's",
     icon: 'graduation',
     description:
-      "Bachelor's and Master's in Software Engineering at Western Governors University (anticipated Apr 2027). Associate's in Computer Science Transfer Pathway at Los Angeles Pierce College.",
+      "Bachelor's and Master's in Software Engineering at Western Governors University, expected April 2027. Before that, an associate's in Computer Science (transfer pathway) at Los Angeles Pierce College.",
     type: 'compilation',
     gradientFrom: '#6366f1',
     gradientTo: '#312e81',
@@ -533,13 +549,13 @@ export const playlists: PlaylistItem[] = [
     tracks: [
       {
         id: 'ed-1',
-        title: 'WGU — BS & MS Software Engineering',
+        title: 'WGU: BS & MS Software Engineering',
         subtitle: 'Millcreek, UT',
         duration: 'Oct 2025 – Apr 2027',
       },
       {
         id: 'ed-2',
-        title: 'Pierce College — AS CS Transfer Pathway',
+        title: 'Pierce College: AS CS Transfer Pathway',
         subtitle: 'Los Angeles, CA',
         duration: 'Aug 2024 – Jun 2025',
       },
@@ -562,7 +578,7 @@ export const browseRows: BrowseRow[] = [
   {
     id: 'experience',
     title: 'Experience',
-    playlistSlugs: ['markbase', 'eshyft', 'code-fu'],
+    playlistSlugs: ['moon', 'markbase', 'eshyft', 'code-fu'],
   },
   {
     id: 'skills',
@@ -589,6 +605,7 @@ export const skills: Skill[] = [
   { name: 'Express', level: 90, category: 'language' },
   { name: 'AWS', level: 88, category: 'tool' },
   { name: 'DynamoDB', level: 85, category: 'tool' },
+  { name: 'MongoDB', level: 75, category: 'tool' },
   { name: 'REST APIs', level: 90, category: 'tool' },
   { name: 'Postman', level: 92, category: 'tool' },
   { name: 'Swagger', level: 88, category: 'tool' },
@@ -614,10 +631,6 @@ export function getPlaylist(slug: string): PlaylistItem | undefined {
   return playlists.find((p) => p.slug === resolveSlug(slug))
 }
 
-export function getPlaylistBySlug(slug: string): PlaylistItem | undefined {
-  return getPlaylist(slug)
-}
-
 export function getPlaylistsByType(type: PlaylistType): PlaylistItem[] {
   return playlists.filter((p) => p.type === type)
 }
@@ -630,11 +643,6 @@ export function getPlaylistsForRow(row: BrowseRow): PlaylistItem[] {
   return row.playlistSlugs
     .map((slug) => getPlaylist(slug))
     .filter((p): p is PlaylistItem => Boolean(p))
-}
-
-export function getSkillsBrowseItems(): PlaylistItem[] {
-  const skillsRow = browseRows.find((r) => r.id === 'skills')
-  return skillsRow ? getPlaylistsForRow(skillsRow) : []
 }
 
 export function getFeaturedForProfile(profile: ProfileType | null): string {

@@ -1,6 +1,6 @@
-# Nicholas Finefter — Portfolio
+# Nicholas Finefter | Portfolio
 
-A Spotify-inspired portfolio site for Nicholas Finefter. Projects, website case studies, and work experience are presented as playlists and albums, with interactive demos on detail pages and audience-specific home views (Recruiter, Client, Explorer).
+My portfolio, styled like Spotify. Projects, website work and jobs show up as playlists, some with small demos on the detail page. You pick Recruiter, Client or Explorer on the first screen and the home page reorders to match.
 
 ## Run locally
 
@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open the URL shown in the terminal (typically `http://localhost:5173`). Choose a perspective on the landing screen, then browse home rows, search, library, and artist profile pages.
+Open the URL the terminal prints (usually `http://localhost:5173`).
 
 ## Build for production
 
@@ -20,19 +20,19 @@ npm run preview
 
 ## Editing portfolio content
 
-Almost all copy, project metadata, skills, and browse layout live in a single data file:
+Nearly all the copy, project info, skills and home layout live in one file:
 
 **`src/data/portfolio.ts`**
 
 Key exports:
 
-- **`playlists`** — each entry is a project, website case study, experience role, or compilation (education). Fields include `slug`, `title`, `description`, `type`, `tags`, `tracks`, optional `links` (GitHub/live), and for experience items `employer` / `period`.
-- **`skills`** — skill name, level (0–100), and category for the artist profile.
-- **`browseRows`** — home page content rows and which playlist slugs appear in each.
-- **`featuredByProfile`** — which playlist is featured on home for Recruiter, Client, and Explorer perspectives.
-- **`profiles`** — perspective labels, greetings, and accents on the profile gate.
-- **`contact`** — email, LinkedIn, and GitHub links on the artist page.
+- **`playlists`**: every project, website, job and the education entry. Fields: `slug`, `title`, `description`, `type`, `tags`, `tracks`, optional `links`, and `employer` / `period` for jobs.
+- **`skills`**: name, level and category for the artist page.
+- **`browseRows`**: the home page rows and which playlists go in each.
+- **`featuredByProfile`**: the featured playlist for each audience.
+- **`profiles`**: labels, greetings and colors on the first screen.
+- **`contact`**: email, LinkedIn and GitHub links.
 
-After editing `portfolio.ts`, save and the dev server will hot-reload. Add demo components under `src/components/playlist/demos/` and register the slug in `src/components/playlist/demos/index.tsx` if you want an interactive section on a playlist page.
+The dev server reloads when you save. To add a demo to a playlist page, put a component in `src/components/playlist/demos/` and register its slug in `src/components/playlist/demos/index.tsx`.
 
-Static assets referenced from playlists (e.g. homepage screenshots) go in **`public/`**.
+Logos and screenshots go in **`public/`**.

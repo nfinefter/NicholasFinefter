@@ -14,12 +14,12 @@ const SERVICES = [
 ] as const
 
 const DELIVERABLES = [
-  'Custom brand-forward homepage with clear licensed-electrician positioning',
-  'Service-focused copy aligned to SFV homeowners and businesses',
-  'Prominent free-quote and contact paths on desktop and mobile',
-  'Fast, lightweight front end with strong Core Web Vitals',
-  'SEO-ready structure (titles, descriptions, semantic sections)',
-  'Live deployment at on-demand-electrical.com',
+  'A custom homepage that leads with licensed-electrician branding',
+  'Copy written for San Fernando Valley homeowners and businesses',
+  'Free-quote and contact buttons on desktop and mobile',
+  'A lightweight front end that loads fast',
+  'SEO basics: titles, descriptions, semantic sections',
+  'Live at on-demand-electrical.com',
 ] as const
 
 const BEFORE_ISSUES = [
@@ -39,16 +39,15 @@ export function OnDemandElectricalDemo() {
           Case study
         </p>
         <p className="mt-2 text-sm leading-relaxed text-neutral-300">
-          On Demand Electrical needed a site that earns trust in seconds and turns
-          urgent searches into calls. The rebuild focuses on licensed SFV
-          positioning, high-intent services, and frictionless quote requests —
-          backed by measurable speed and conversion gains over the legacy
-          presence.
+          On Demand Electrical needed a site that looks trustworthy right away and
+          makes it easy to call or ask for a quote. I rebuilt it around that: clear
+          licensed-electrician branding, the services people actually search for,
+          and a quote option that is never more than a tap away.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {[
             { icon: MapPin, label: 'San Fernando Valley, CA' },
-            { icon: Shield, label: 'Licensed & insured' },
+            { icon: Shield, label: 'Licensed electricians' },
             { icon: Phone, label: '24/7 emergency line' },
             { icon: Zap, label: 'Quote-first UX' },
           ].map(({ icon: Icon, label }) => (
@@ -92,7 +91,7 @@ export function OnDemandElectricalDemo() {
           </ul>
         </div>
         <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5">
-          <p className="text-sm font-semibold text-white">Before (legacy site)</p>
+          <p className="text-sm font-semibold text-white">Before (old site)</p>
           <ul className="mt-3 space-y-2 text-sm text-neutral-400">
             {BEFORE_ISSUES.map((item) => (
               <li key={item} className="flex gap-2">
@@ -174,6 +173,12 @@ export function OnDemandElectricalDemo() {
             </div>
           )}
         </div>
+
+        {!showAfter && (
+          <p className="mt-2 text-xs text-neutral-500">
+            Rough mock of the old site, not a screenshot.
+          </p>
+        )}
 
         <div className="mt-4 grid grid-cols-2 gap-2 text-center text-sm sm:grid-cols-4">
           {[

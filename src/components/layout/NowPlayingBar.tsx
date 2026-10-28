@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Pause, Play } from "lucide-react";
-import { featuredPlaylistSlug, fullName } from "@/data/portfolio";
+import { featuredPlaylist, fullName } from "@/data/portfolio";
 import { usePlayer } from "@/hooks/usePlayer";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +39,7 @@ export function NowPlayingBar({
   const subtitle = subtitleProp ?? current?.subtitle ?? fullName;
   const playlistHref =
     playlistHrefProp ??
-    (current ? `/playlist/${current.slug}` : `/playlist/${featuredPlaylistSlug}`);
+    (current ? `/playlist/${current.slug}` : `/playlist/${featuredPlaylist}`);
   const isPlaying = isPlayingProp ?? playerPlaying;
   const onTogglePlay = onTogglePlayProp ?? toggle;
 

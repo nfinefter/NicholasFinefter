@@ -34,7 +34,7 @@ export function PulseDashDemo() {
       <div className="mb-6 flex items-start gap-3 rounded-lg border border-cyan-500/20 bg-cyan-500/5 px-4 py-3">
         <Database className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
         <p className="text-xs leading-relaxed text-neutral-300">
-          Built with React, Tailwind, and Supabase — per resume project stack.
+          Built with React, Tailwind and Supabase.
         </p>
       </div>
 
