@@ -56,7 +56,7 @@ export interface Profile {
 export const fullName = 'Nicholas Finefter'
 
 export const tagline =
-  'Software engineering student in Los Angeles. I\'m an SDET at Moon, I\'ve built full-stack apps with React, Express and AWS, and I started out in QA, so I test what I ship.'
+  'Software engineering student in Los Angeles. I started out in QA, moved into full-stack, and now do both as an SDET, so I test what I ship.'
 
 export const contact = {
   email: 'nfinefter@gmail.com',
@@ -66,7 +66,7 @@ export const contact = {
 
 export const aboutBio = [
   'I started in QA at ESHYFT, where I validated 50+ web and mobile features, ran 200+ test cases and caught 30+ critical defects before release. Production issues dropped 15%.',
-  'Now I\'m an SDET at Moon. I built our end-to-end regression suite from scratch (90% coverage), set up CI/CD quality gates that cut pipeline runtime 66%, and shipped a metrics dashboard and a few internal tools. Before that I built full-stack features at Markbase AI with React, Express, DynamoDB and Cognito.',
+  'At Moon I\'m an SDET. I built our end-to-end regression suite from scratch (90% coverage), set up CI/CD quality gates that cut pipeline runtime 66%, and shipped a metrics dashboard and a few internal tools. Before that I built full-stack features at Markbase AI with React, Express, DynamoDB and Cognito.',
   'On the side I build projects like PulseDash, StockBot and QuizBuddy, and I teach kids to code at Code Fu. I\'m working on my master\'s in software engineering at WGU.',
 ]
 
@@ -355,7 +355,7 @@ export const playlists: PlaylistItem[] = [
     slug: 'moon',
     title: 'Moon',
     subtitle: 'Software Development Engineer in Test',
-    icon: 'flask',
+    icon: 'moon',
     description:
       'I built the end-to-end regression suite from scratch, put CI/CD quality gates in front of every merge, and shipped a team-wide metrics dashboard and several internal tools. I also work as a software engineer on sprint delivery.',
     type: 'experience',

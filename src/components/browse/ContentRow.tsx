@@ -84,7 +84,7 @@ export default function ContentRow({ row, className }: ContentRowProps) {
         <ChevronRight className="h-6 w-6" />
       </button>
 
-      <motion.div className="overflow-hidden" ref={emblaRef}>
+      <motion.div className="-mx-3 -my-4 overflow-hidden px-3 py-4" ref={emblaRef}>
         <div className="flex gap-4">
           {items.map((item) => (
             <MediaCard key={item.slug} item={item} variant={variant} />
