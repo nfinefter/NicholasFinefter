@@ -29,7 +29,7 @@ export default function ProfileGate() {
     }
   }, [profile, navigate])
 
-  const selectPerspective = (id: (typeof profiles)[number]['id']) => {
+  const selectProfile = (id: (typeof profiles)[number]['id']) => {
     setProfile(id)
     navigate('/browse', { replace: true })
   }
@@ -55,7 +55,7 @@ export default function ProfileGate() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        Pick a perspective — each subagent tailors what you see first.
+        Pick one and I'll show the relevant stuff first. You can switch any time.
       </motion.p>
 
       <motion.div
@@ -64,14 +64,14 @@ export default function ProfileGate() {
         initial="hidden"
         animate="show"
       >
-        {profiles.map((perspective) => {
-          const Icon = getProfileIcon(perspective.icon)
+        {profiles.map((profile) => {
+          const Icon = getProfileIcon(profile.icon)
           return (
             <motion.button
-              key={perspective.id}
+              key={profile.id}
               type="button"
               variants={item}
-              onClick={() => selectPerspective(perspective.id)}
+              onClick={() => selectProfile(profile.id)}
               className="group flex flex-col items-center gap-4 rounded-xl border border-transparent bg-transparent p-4 outline-none focus-visible:ring-2 focus-visible:ring-[#1ed760] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.96 }}
@@ -79,7 +79,7 @@ export default function ProfileGate() {
               <motion.div
                 className={cn(
                   'flex h-28 w-28 items-center justify-center rounded-md bg-gradient-to-br shadow-lg transition-shadow duration-300 md:h-32 md:w-32',
-                  perspective.accent,
+                  profile.accent,
                   'group-hover:shadow-[0_0_32px_rgba(30,215,96,0.25)]',
                 )}
               >
@@ -87,9 +87,9 @@ export default function ProfileGate() {
               </motion.div>
               <motion.div className="text-center">
                 <p className="text-lg font-semibold text-neutral-300 transition-colors group-hover:text-white">
-                  {perspective.label}
+                  {profile.label}
                 </p>
-                <p className="mt-1 text-xs text-neutral-500">{perspective.hint}</p>
+                <p className="mt-1 text-xs text-neutral-500">{profile.hint}</p>
               </motion.div>
             </motion.button>
           )

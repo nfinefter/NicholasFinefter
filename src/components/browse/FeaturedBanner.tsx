@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import { Play } from 'lucide-react'
 import { PlaylistCover } from '@/components/PlaylistCover'
 import { cn } from '@/lib/utils'
-import type { Playlist, PlaylistType } from '@/data/portfolio'
+import type { PlaylistItem, PlaylistType } from '@/data/portfolio'
 import { usePlayer } from '@/hooks/usePlayer'
 
 interface FeaturedBannerProps {
-  project: Playlist
+  project: PlaylistItem
   className?: string
 }
 
@@ -54,7 +54,7 @@ export default function FeaturedBanner({ project, className }: FeaturedBannerPro
                 className="inline-flex items-center gap-2 rounded-full bg-[#1ed760] px-6 py-3 text-sm font-bold text-black transition-transform hover:scale-105 hover:bg-[#1fdf64] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1ed760] focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
               >
                 <Play className="h-5 w-5 fill-black" />
-                Play case study
+                Play
               </button>
               <Link
                 to={`/playlist/${project.slug}`}

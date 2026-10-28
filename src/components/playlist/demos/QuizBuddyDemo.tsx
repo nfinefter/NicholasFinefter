@@ -15,14 +15,14 @@ const QUESTIONS = [
     answers: ['POST', 'PUT', 'CONNECT'],
     correct: 1,
     explanation:
-      'PUT is idempotent — repeating the same request should leave the resource in the same state.',
+      'PUT is idempotent: sending the same request twice leaves the resource in the same state.',
   },
   {
     q: 'In React, where should side effects like fetching data run?',
     answers: ['render()', 'useEffect', 'useState initializer'],
     correct: 1,
     explanation:
-      'useEffect runs after render and is the right place for subscriptions, timers, and API calls.',
+      'useEffect runs after render, so it is the place for fetching data, timers and subscriptions.',
   },
 ] as const
 

@@ -2,24 +2,24 @@ import { useEffect, useState } from 'react'
 import { Bot, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const STACK = ['React', 'Express', 'Lambda', 'API Gateway', 'Cognito', 'DynamoDB']
+const STACK = ['React', 'Express', 'AWS', 'Cognito', 'DynamoDB', 'Postman']
 
 const CHAT = [
   {
     role: 'user' as const,
-    text: 'Draft a product launch email for our AI marketing assistant — friendly, under 120 words.',
+    text: 'Write a short launch email for our new feature. Keep it under 80 words.',
   },
   {
     role: 'assistant' as const,
-    text: 'Subject: Meet your new campaign co-pilot\n\nHi there — Markbase helps you ship on-brand copy in minutes. Upload your brief, pick a tone, and get subject lines, body copy, and social snippets ready to review. Built for teams who move fast without sacrificing voice.',
+    text: 'Subject: Campaign copy from a quick brief\n\nHi there, we just shipped a faster way to draft campaign copy. Tell us your goal and tone, and you get subject lines, body copy and social posts to review and edit. Give it a try this week.',
   },
   {
     role: 'user' as const,
-    text: 'Shorten the body and add a clear CTA.',
+    text: 'Shorter, and add a call to action.',
   },
   {
     role: 'assistant' as const,
-    text: 'Ship on-brand campaigns in minutes — upload a brief, choose a tone, export ready-to-send copy. Start your next launch → [Try Markbase]',
+    text: 'Draft campaign copy from a one-line brief. Pick a tone, edit it, send it. Try it today.',
   },
 ]
 
@@ -82,7 +82,7 @@ export function MarkbaseDemo() {
       </div>
 
       <p className="mt-3 text-xs text-neutral-500">
-        Simulated marketing chat · Postman: 12 API tests passing
+        Mock chat for illustration, not real agent output.
       </p>
     </div>
   )

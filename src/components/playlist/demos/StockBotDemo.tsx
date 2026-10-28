@@ -38,7 +38,7 @@ export function StockBotDemo() {
     <div className="mt-8">
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
-          Paper trading · Alpaca
+          Demo data
         </span>
         <span className="text-xs text-neutral-500">Simulated trade log</span>
       </div>
@@ -104,7 +104,7 @@ export function StockBotDemo() {
             <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
             <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-            <span className="ml-2">stockbot — executing</span>
+            <span className="ml-2">stockbot · running</span>
           </div>
           {trades.map((t, i) => (
             <div key={`${t}-${i}`} className="text-neutral-200">

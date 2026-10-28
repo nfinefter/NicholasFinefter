@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { PlaylistCover } from '@/components/PlaylistCover'
 import { cn } from '@/lib/utils'
-import { PLAYLIST_TYPE_LABELS, type CardVariant, type Playlist } from '@/data/portfolio'
+import { PLAYLIST_TYPE_LABELS, type CardVariant, type PlaylistItem } from '@/data/portfolio'
 
 interface MediaCardProps {
-  item: Playlist
+  item: PlaylistItem
   variant?: CardVariant
   className?: string
 }

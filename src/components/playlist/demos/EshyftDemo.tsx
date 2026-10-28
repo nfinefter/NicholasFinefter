@@ -44,10 +44,10 @@ export function EshyftDemo() {
       <div className="mt-6 flex items-start gap-3 rounded-lg border border-violet-500/20 bg-violet-500/5 px-4 py-3">
         <Shield className="mt-0.5 h-5 w-5 shrink-0 text-violet-400" />
         <div>
-          <p className="text-sm font-medium text-white">Bitwarden rollout (1-month lead)</p>
+          <p className="text-sm font-medium text-white">Bitwarden rollout (led over one month)</p>
           <p className="mt-0.5 text-xs text-neutral-400">
-            Improved team credential security by 100% and workflow efficiency by 25% through
-            centralized access control — per resume.
+            Centralized access control improved team credential security by 100% and
+            workflow efficiency by 25%.
           </p>
         </div>
       </div>
