@@ -1,6 +1,7 @@
 import { CodeFuDemo } from './CodeFuDemo'
 import { EshyftDemo } from './EshyftDemo'
 import { MarkbaseDemo } from './MarkbaseDemo'
+import { MoonDemo } from './MoonDemo'
 import { OnDemandElectricalDemo } from './OnDemandElectricalDemo'
 import { PulseDashDemo } from './PulseDashDemo'
 import { QuizBuddyDemo } from './QuizBuddyDemo'
@@ -17,6 +18,8 @@ export function PlaylistDemo({ slug }: { slug: string }) {
       return <PulseDashDemo />
     case 'adaptive-quiz':
       return <QuizBuddyDemo />
+    case 'moon':
+      return <MoonDemo />
     case 'markbase':
       return <MarkbaseDemo />
     case 'eshyft':

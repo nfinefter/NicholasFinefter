@@ -56,7 +56,7 @@ export interface Profile {
 export const fullName = 'Nicholas Finefter'
 
 export const tagline =
-  'Software engineering student in Los Angeles. I build full-stack apps with React, Express and AWS, and I came up through QA, so I test what I ship.'
+  'Software engineering student in Los Angeles. I\'m an SDET at Moon, I\'ve built full-stack apps with React, Express and AWS, and I started out in QA, so I test what I ship.'
 
 export const contact = {
   email: 'nfinefter@gmail.com',
@@ -65,14 +65,16 @@ export const contact = {
 }
 
 export const aboutBio = [
-  'I started in QA at ESHYFT, where I tested 50+ web and mobile features, ran 200+ test cases and caught 30+ critical bugs before release. Production issues dropped 15% and releases went out 30% faster.',
-  'Right now I\'m a QA automation engineering intern at Moon, and I write full-stack code at Markbase Ai with React, Express, DynamoDB and Cognito. On the side I build projects like PulseDash, StockBot and QuizBuddy, and I teach kids to code at Code Fu.',
-  'I\'m finishing my bachelor\'s and master\'s in software engineering at WGU. I also speak English and Russian.',
+  'I started in QA at ESHYFT, where I validated 50+ web and mobile features, ran 200+ test cases and caught 30+ critical defects before release. Production issues dropped 15%.',
+  'Now I\'m an SDET at Moon. I built our end-to-end regression suite from scratch (90% coverage), set up CI/CD quality gates that cut pipeline runtime 66%, and shipped a metrics dashboard and a few internal tools. Before that I built full-stack features at Markbase AI with React, Express, DynamoDB and Cognito.',
+  'On the side I build projects like PulseDash, StockBot and QuizBuddy, and I teach kids to code at Code Fu. I\'m working on my master\'s in software engineering at WGU.',
 ]
 
 export const focusAreas = [
   'AI',
   'Automation',
+  'Test Automation',
+  'CI/CD',
   'Web Dev',
   'Data',
   'QA',
@@ -83,7 +85,7 @@ export const focusAreas = [
 export const featuredPlaylist = 'stockbot'
 
 export const featuredByProfile: Record<ProfileType, string> = {
-  recruiter: 'markbase',
+  recruiter: 'moon',
   client: 'on-demand-electrical',
   explorer: 'stockbot',
 }
@@ -352,43 +354,73 @@ export const playlists: PlaylistItem[] = [
   {
     slug: 'moon',
     title: 'Moon',
-    subtitle: 'QA Automation Engineering Intern',
+    subtitle: 'Software Development Engineer in Test',
     icon: 'flask',
     description:
-      'QA automation engineering intern on the engineering team at Moon, working out of the Glendale office.',
+      'I built the end-to-end regression suite from scratch, put CI/CD quality gates in front of every merge, and shipped a team-wide metrics dashboard and several internal tools. I also work as a software engineer on sprint delivery.',
     type: 'experience',
-    employer: 'Moon · Glendale, CA',
+    employer: 'Moon · Los Angeles, CA',
     period: 'Jun 2026 – Present',
     gradientFrom: '#64748b',
     gradientTo: '#0f172a',
     mesh: 'bg-gradient-to-br from-slate-500 via-slate-700 to-slate-950',
     gradient: 'linear-gradient(135deg, #64748b, #0f172a)',
-    tags: ['QA', 'Test Automation'],
+    tags: ['SDET', 'Test Automation', 'CI/CD', 'GitHub Actions'],
     tracks: [
       {
         id: 'mo-1',
-        title: 'QA automation',
-        subtitle: 'Engineering team intern',
-        duration: '3:30',
+        title: 'End-to-end regression suite',
+        subtitle: 'Built from scratch · 90% coverage',
+        duration: '4:30',
       },
       {
         id: 'mo-2',
-        title: 'Joined June 2026',
-        subtitle: 'Glendale, CA office',
-        duration: '2:22',
+        title: 'UI, API & visual tests',
+        subtitle: 'Across the app and its business logic',
+        duration: '3:15',
+      },
+      {
+        id: 'mo-3',
+        title: 'CI/CD quality gates',
+        subtitle: 'GitHub Actions blocks regressions pre-merge',
+        duration: '3:48',
+      },
+      {
+        id: 'mo-4',
+        title: '66% faster pipeline',
+        subtitle: 'Parallelization & selective execution, no loss in coverage',
+        duration: '3:05',
+      },
+      {
+        id: 'mo-5',
+        title: 'Same-day feature delivery',
+        subtitle: 'Software engineer on sprints, AI-assisted workflows',
+        duration: '3:40',
+      },
+      {
+        id: 'mo-6',
+        title: 'Internal tools',
+        subtitle: 'Built for engineers and staff',
+        duration: '2:50',
+      },
+      {
+        id: 'mo-7',
+        title: 'Metrics dashboard',
+        subtitle: 'Test health, coverage & deployment status',
+        duration: '3:22',
       },
     ],
   },
   {
     slug: 'markbase',
-    title: 'Markbase Ai',
-    subtitle: 'Full Stack Software Engineer (Intern to Part-Time)',
+    title: 'Markbase AI',
+    subtitle: 'Full Stack Software Engineer',
     icon: 'cloud',
     description:
-      'I build full-stack features in React and Express, design the REST APIs behind them, and run our AWS dev environment (DynamoDB, Cognito). I also built an AI agent that acts as a CMO, then wrote a Postman suite of 20+ tests to check its prompts and our APIs, which cut manual QA time by 35%.',
+      'I built full-stack features in React and Express, designed the REST APIs behind them, and ran our AWS dev environment (DynamoDB, Cognito). I also built an AI agent that acts as a CMO, then wrote a Postman suite of 20+ prompt and API tests that cut manual QA time by 35%.',
     type: 'experience',
-    employer: 'Markbase Ai · Los Angeles, CA',
-    period: 'Dec 2025 – Present',
+    employer: 'Markbase AI · Los Angeles, CA',
+    period: 'Dec 2025 – Sep 2026',
     gradientFrom: '#0ea5e9',
     gradientTo: '#1e3a8a',
     mesh: 'bg-gradient-to-br from-sky-500 via-blue-700 to-indigo-950',
@@ -431,10 +463,10 @@ export const playlists: PlaylistItem[] = [
   {
     slug: 'eshyft',
     title: 'ESHYFT',
-    subtitle: 'QA Engineer (Intern to Full-Time)',
+    subtitle: 'QA Engineer',
     icon: 'shield',
     description:
-      'Tested 50+ web and mobile features with Postman and Swagger, and ran QA across several releases: end-to-end, regression and API testing alongside the devs and PMs. I also spotted a gap in how the team handled passwords and led the Bitwarden rollout that fixed it.',
+      'Validated 50+ web and mobile features with Postman and Swagger, and led QA across several releases: end-to-end, regression and API testing with the devs and PMs. I also found a big gap in password management and led the one-month Bitwarden rollout that got rid of shared passwords.',
     type: 'experience',
     employer: 'ESHYFT · Howell, NJ',
     period: 'Jul 2025 – Oct 2025',
@@ -443,7 +475,7 @@ export const playlists: PlaylistItem[] = [
     mesh: 'bg-gradient-to-br from-emerald-600 via-green-800 to-emerald-950',
     gradient: 'linear-gradient(135deg, #059669, #064e3b)',
     image: '/logos/eshyft.png',
-    tags: ['Postman', 'Swagger', 'Testomatio', 'QA', 'API Testing'],
+    tags: ['Postman', 'Swagger', 'QA', 'API Testing'],
     tracks: [
       {
         id: 'es-1',
@@ -465,14 +497,14 @@ export const playlists: PlaylistItem[] = [
       },
       {
         id: 'es-4',
-        title: '30% faster release cycle',
+        title: 'Predictable release cadence',
         subtitle: 'Regression & API testing with devs and PMs',
         duration: '3:42',
       },
       {
         id: 'es-5',
         title: 'Bitwarden implementation',
-        subtitle: '100% credential security · 25% workflow gain',
+        subtitle: 'One-month rollout · no more shared passwords',
         duration: '2:50',
       },
       {
@@ -538,7 +570,7 @@ export const playlists: PlaylistItem[] = [
     subtitle: "Bachelor's & Master's · Associate's",
     icon: 'graduation',
     description:
-      "Bachelor's and Master's in Software Engineering at Western Governors University, expected April 2027. Before that, an associate's in Computer Science (transfer pathway) at Los Angeles Pierce College.",
+      "B.S. in Software Engineering at Western Governors University (Oct 2025 to Oct 2026), now working on the M.S., expected April 2027. Before that, an associate's in Computer Science (transfer pathway) at Los Angeles Pierce College.",
     type: 'compilation',
     gradientFrom: '#6366f1',
     gradientTo: '#312e81',
@@ -549,12 +581,18 @@ export const playlists: PlaylistItem[] = [
     tracks: [
       {
         id: 'ed-1',
-        title: 'WGU: BS & MS Software Engineering',
-        subtitle: 'Millcreek, UT',
-        duration: 'Oct 2025 – Apr 2027',
+        title: 'WGU: M.S. Software Engineering',
+        subtitle: 'Millcreek, UT · anticipated Apr 2027',
+        duration: 'Oct 2026 – Apr 2027',
       },
       {
         id: 'ed-2',
+        title: 'WGU: B.S. Software Engineering',
+        subtitle: 'Millcreek, UT',
+        duration: 'Oct 2025 – Oct 2026',
+      },
+      {
+        id: 'ed-3',
         title: 'Pierce College: AS CS Transfer Pathway',
         subtitle: 'Los Angeles, CA',
         duration: 'Aug 2024 – Jun 2025',
@@ -594,25 +632,33 @@ export const browseRows: BrowseRow[] = [
 
 export const skills: Skill[] = [
   { name: 'JavaScript', level: 90, category: 'language' },
+  { name: 'TypeScript', level: 88, category: 'language' },
   { name: 'Python', level: 88, category: 'language' },
-  { name: 'React', level: 92, category: 'language' },
-  { name: 'C++', level: 75, category: 'language' },
   { name: 'C#', level: 72, category: 'language' },
+  { name: 'SQL', level: 85, category: 'language' },
   { name: 'HTML', level: 90, category: 'language' },
   { name: 'CSS', level: 88, category: 'language' },
-  { name: 'SQL', level: 85, category: 'language' },
+  { name: 'React', level: 92, category: 'language' },
   { name: 'Node.js', level: 85, category: 'language' },
   { name: 'Express', level: 90, category: 'language' },
-  { name: 'AWS', level: 88, category: 'tool' },
-  { name: 'DynamoDB', level: 85, category: 'tool' },
-  { name: 'MongoDB', level: 75, category: 'tool' },
-  { name: 'REST APIs', level: 90, category: 'tool' },
+  { name: '.NET', level: 70, category: 'language' },
+  { name: 'Playwright', level: 90, category: 'tool' },
+  { name: 'Appium', level: 80, category: 'tool' },
   { name: 'Postman', level: 92, category: 'tool' },
   { name: 'Swagger', level: 88, category: 'tool' },
-  { name: 'Testomatio', level: 85, category: 'tool' },
-  { name: 'Jasmine', level: 80, category: 'tool' },
+  { name: 'GitHub Actions', level: 88, category: 'tool' },
+  { name: 'CI/CD', level: 88, category: 'tool' },
+  { name: 'Test Automation', level: 90, category: 'tool' },
+  { name: 'REST APIs', level: 90, category: 'tool' },
+  { name: 'AWS', level: 88, category: 'tool' },
+  { name: 'Azure', level: 70, category: 'tool' },
+  { name: 'DynamoDB', level: 85, category: 'tool' },
+  { name: 'MongoDB', level: 75, category: 'tool' },
   { name: 'Git', level: 90, category: 'tool' },
   { name: 'Docker', level: 78, category: 'tool' },
+  { name: 'Jira', level: 80, category: 'tool' },
+  { name: 'Figma', level: 70, category: 'tool' },
+  { name: 'Agile', level: 80, category: 'tool' },
 ]
 
 export const artistProfile = {

@@ -1,7 +1,7 @@
 import { Shield, Smartphone } from 'lucide-react'
 import { Counter } from './Counter'
 
-const CHIPS = ['REST APIs', 'Postman', 'Testomatio', 'iOS', 'Android', 'Regression']
+const CHIPS = ['REST APIs', 'Postman', 'Swagger', 'iOS', 'Android', 'Regression']
 
 export function EshyftDemo() {
   return (
@@ -46,8 +46,8 @@ export function EshyftDemo() {
         <div>
           <p className="text-sm font-medium text-white">Bitwarden rollout (led over one month)</p>
           <p className="mt-0.5 text-xs text-neutral-400">
-            Centralized access control improved team credential security by 100% and
-            workflow efficiency by 25%.
+            Found a major gap in password management, then consolidated the team's
+            credentials and eliminated shared passwords across environments.
           </p>
         </div>
       </div>
