@@ -524,7 +524,7 @@ export const playlists: PlaylistItem[] = [
       'I wrote lesson plans and projects for 20+ students covering sequencing, loops, conditionals, variables and events. I taught them to turn requirements into working code by iterating and debugging, ran bigger projects where sprites pass messages to each other, and helped students deploy their own apps.',
     type: 'experience',
     employer: 'Code Fu · Los Angeles, CA',
-    period: 'Aug 2024 – 2026',
+    period: 'Aug 2024 – Jun 2026',
     gradientFrom: '#f59e0b',
     gradientTo: '#b45309',
     mesh: 'bg-gradient-to-br from-amber-500 via-orange-600 to-yellow-900',
