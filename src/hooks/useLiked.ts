@@ -19,7 +19,11 @@ export function useLiked() {
   const [liked, setLiked] = useState<string[]>(() => readLiked())
 
   useEffect(() => {
-    localStorage.setItem(LIKED_KEY, JSON.stringify(liked))
+    try {
+      localStorage.setItem(LIKED_KEY, JSON.stringify(liked))
+    } catch {
+      // storage blocked, likes just last for this visit
+    }
   }, [liked])
 
   const toggle = useCallback((slug: string) => {

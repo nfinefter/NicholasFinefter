@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { BadgeCheck, Code2, Link2, Mail, Play } from 'lucide-react'
+import { BadgeCheck, Code2, Link2, Play } from 'lucide-react'
+import { EmailButton } from '@/components/ContactEmail'
 import { PlaylistCover } from '@/components/PlaylistCover'
 import {
   artistProfile,
   contact,
+  featuredPlaylist,
   getExperiencePlaylists,
   getPlaylist,
   getPlaylistsByType,
@@ -73,7 +75,7 @@ function DiscographyGrid({ items }: { items: ReturnType<typeof getPlaylistsByTyp
 }
 
 export default function ArtistPage() {
-  const { play } = usePlayer()
+  const { playAndOpen } = usePlayer()
   const projects = getPlaylistsByType('project')
   const websites = getPlaylistsByType('website')
   const experience = getExperiencePlaylists()
@@ -126,13 +128,7 @@ export default function ArtistPage() {
                 <Code2 className="h-4 w-4 text-neutral-300" />
                 GitHub
               </a>
-              <a
-                href={`mailto:${contact.email}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#3e3e3e]"
-              >
-                <Mail className="h-4 w-4 text-neutral-300" />
-                Email
-              </a>
+              <EmailButton />
             </div>
           </div>
         </div>
@@ -141,9 +137,9 @@ export default function ArtistPage() {
       <div className="px-4 md:px-8">
         <button
           type="button"
-          onClick={() => play('stockbot')}
+          onClick={() => playAndOpen(featuredPlaylist)}
           className="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-[#1db954] text-black hover:scale-105"
-          aria-label="Play featured"
+          aria-label="Play featured project"
         >
           <Play className="h-7 w-7 fill-black" />
         </button>
@@ -218,9 +214,44 @@ export default function ArtistPage() {
           <DiscographyGrid items={projects} />
         </section>
 
-        <section>
+        <section className="mb-10">
           <h2 className="mb-4 text-xl font-bold text-white">Websites</h2>
           <DiscographyGrid items={websites} />
+        </section>
+
+        <section id="contact" className="scroll-mt-24">
+          <h2 className="mb-2 text-xl font-bold text-white">Get in touch</h2>
+          <p className="mb-4 text-sm text-neutral-400">
+            Best way to reach me is{' '}
+            <a
+              href={`mailto:${contact.email}`}
+              className="font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-[#1db954]"
+            >
+              {contact.email}
+            </a>
+            .
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <EmailButton />
+            <a
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#3e3e3e]"
+            >
+              <Link2 className="h-4 w-4 text-[#1db954]" />
+              LinkedIn
+            </a>
+            <a
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#282828] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#3e3e3e]"
+            >
+              <Code2 className="h-4 w-4 text-neutral-300" />
+              GitHub
+            </a>
+          </div>
         </section>
       </div>
     </motion.div>

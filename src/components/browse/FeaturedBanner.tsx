@@ -18,7 +18,7 @@ function featuredLabel(type: PlaylistType): string {
 }
 
 export default function FeaturedBanner({ project, className }: FeaturedBannerProps) {
-  const { play } = usePlayer()
+  const { playAndOpen } = usePlayer()
 
   return (
     <motion.section
@@ -50,7 +50,7 @@ export default function FeaturedBanner({ project, className }: FeaturedBannerPro
             <div className="mt-6 flex flex-wrap gap-3">
               <button
                 type="button"
-                onClick={() => play(project.slug)}
+                onClick={() => playAndOpen(project.slug)}
                 className="inline-flex items-center gap-2 rounded-full bg-[#1ed760] px-6 py-3 text-sm font-bold text-black transition-transform hover:scale-105 hover:bg-[#1fdf64] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1ed760] focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
               >
                 <Play className="h-5 w-5 fill-black" />

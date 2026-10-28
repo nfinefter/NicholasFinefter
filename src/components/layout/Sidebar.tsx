@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import {
   CircleUser,
@@ -8,6 +8,7 @@ import {
   Search,
 } from "lucide-react";
 import { ProfileSwitcher } from "@/components/layout/ProfileSwitcher";
+import { useNavActive } from "@/hooks/useNavActive";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -17,8 +18,8 @@ const navItems = [
 ] as const;
 
 const secondaryItems = [
-  { to: "/library?filter=liked", label: "Liked Songs", icon: Heart },
-  { to: "/artist/me", label: "Artist", icon: CircleUser },
+  { to: "/library?filter=liked", label: "Liked", icon: Heart },
+  { to: "/artist/me", label: "About me", icon: CircleUser },
 ] as const;
 
 function NavItem({
@@ -30,31 +31,27 @@ function NavItem({
   label: string;
   icon: LucideIcon;
 }) {
+  const isActive = useNavActive()(to);
   return (
-    <NavLink
+    <Link
       to={to}
-      className={({ isActive }) =>
-        cn(
-          "group flex items-center gap-4 rounded-md px-3 py-2.5 text-sm font-semibold text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]",
-          isActive && "text-[var(--accent-green)]",
-        )
-      }
-    >
-      {({ isActive }) => (
-        <>
-          <Icon
-            className={cn(
-              "size-6 shrink-0",
-              isActive
-                ? "fill-[var(--accent-green)] stroke-[var(--accent-green)]"
-                : "stroke-current",
-            )}
-            strokeWidth={isActive ? 0 : 2}
-          />
-          <span>{label}</span>
-        </>
+      aria-current={isActive ? "page" : undefined}
+      className={cn(
+        "group flex items-center gap-4 rounded-md px-3 py-2.5 text-sm font-semibold text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]",
+        isActive && "text-[var(--accent-green)]",
       )}
-    </NavLink>
+    >
+      <Icon
+        className={cn(
+          "size-6 shrink-0",
+          isActive
+            ? "fill-[var(--accent-green)] stroke-[var(--accent-green)]"
+            : "stroke-current",
+        )}
+        strokeWidth={isActive ? 0 : 2}
+      />
+      <span>{label}</span>
+    </Link>
   );
 }
 
