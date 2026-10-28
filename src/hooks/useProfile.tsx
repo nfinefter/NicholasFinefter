@@ -12,11 +12,24 @@ import type { ProfileType } from '@/data/portfolio'
 const PROFILE_KEY = 'portfolio-profile'
 
 function readProfile(): ProfileType | null {
-  const stored = localStorage.getItem(PROFILE_KEY)
-  if (stored === 'recruiter' || stored === 'client' || stored === 'explorer') {
-    return stored
+  try {
+    const stored = localStorage.getItem(PROFILE_KEY)
+    if (stored === 'recruiter' || stored === 'client' || stored === 'explorer') {
+      return stored
+    }
+  } catch {
+    // storage blocked (private mode etc.), just start without a saved profile
   }
   return null
+}
+
+function saveProfile(id: ProfileType | null) {
+  try {
+    if (id) localStorage.setItem(PROFILE_KEY, id)
+    else localStorage.removeItem(PROFILE_KEY)
+  } catch {
+    // ignore
+  }
 }
 
 interface ProfileContextValue {
@@ -31,21 +44,15 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
   const [profile, setProfileState] = useState<ProfileType | null>(() => readProfile())
 
   useEffect(() => {
-    if (profile) {
-      localStorage.setItem(PROFILE_KEY, profile)
-    } else {
-      localStorage.removeItem(PROFILE_KEY)
-    }
+    saveProfile(profile)
   }, [profile])
 
   const setProfile = useCallback((id: ProfileType) => {
     setProfileState(id)
-    localStorage.setItem(PROFILE_KEY, id)
   }, [])
 
   const clearProfile = useCallback(() => {
     setProfileState(null)
-    localStorage.removeItem(PROFILE_KEY)
   }, [])
 
   const value = useMemo(

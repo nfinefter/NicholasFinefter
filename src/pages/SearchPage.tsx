@@ -59,7 +59,6 @@ export default function SearchPage() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="What do you want to find?"
           className="w-full rounded-full bg-white py-3.5 pl-12 pr-4 text-black placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#1db954]"
-          autoFocus
         />
       </div>
 
@@ -88,7 +87,7 @@ export default function SearchPage() {
       </div>
 
       {empty ? (
-        <p className="text-neutral-400">No results. Try &quot;StockBot&quot; or &quot;Lighthouse&quot;.</p>
+        <p className="text-neutral-400">No results. Try &quot;Moon&quot;, &quot;Playwright&quot; or &quot;React&quot;.</p>
       ) : (
         <>
           {results.playlists.length > 0 && (

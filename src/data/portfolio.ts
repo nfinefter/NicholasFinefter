@@ -67,7 +67,7 @@ export const contact = {
 export const aboutBio = [
   'I started in QA at ESHYFT, where I validated 50+ web and mobile features, ran 200+ test cases and caught 30+ critical defects before release. Production issues dropped 15%.',
   'At Moon I\'m an SDET. I built our end-to-end regression suite from scratch (90% coverage), set up CI/CD quality gates that cut pipeline runtime 66%, and shipped a metrics dashboard and a few internal tools. Before that I built full-stack features at Markbase AI with React, Express, DynamoDB and Cognito.',
-  'On the side I build projects like PulseDash, StockBot and QuizBuddy, and I teach kids to code at Code Fu. I\'m working on my master\'s in software engineering at WGU.',
+  'Outside of work I build projects like PulseDash, StockBot and QuizBuddy. I also taught kids to code at Code Fu. I\'m working on my master\'s in software engineering at WGU.',
 ]
 
 export const focusAreas = [
@@ -521,10 +521,10 @@ export const playlists: PlaylistItem[] = [
     subtitle: 'Senior Instructor',
     icon: 'bolt',
     description:
-      'I write lesson plans and projects for 20+ students covering sequencing, loops, conditionals, variables and events. I teach them to turn requirements into working code by iterating and debugging, run bigger projects where sprites pass messages to each other, and have helped students deploy their own apps.',
+      'I wrote lesson plans and projects for 20+ students covering sequencing, loops, conditionals, variables and events. I taught them to turn requirements into working code by iterating and debugging, ran bigger projects where sprites pass messages to each other, and helped students deploy their own apps.',
     type: 'experience',
     employer: 'Code Fu · Los Angeles, CA',
-    period: 'Aug 2024 – Present',
+    period: 'Aug 2024 – 2026',
     gradientFrom: '#f59e0b',
     gradientTo: '#b45309',
     mesh: 'bg-gradient-to-br from-amber-500 via-orange-600 to-yellow-900',

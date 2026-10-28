@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   featuredPlaylist,
   getPlaylist,
@@ -16,6 +17,7 @@ import {
 interface PlayerContextValue {
   current: PlaylistItem
   play: (slug: string) => void
+  playAndOpen: (slug: string) => void
   isPlaying: boolean
   togglePlay: () => void
   toggle: () => void
@@ -24,6 +26,7 @@ interface PlayerContextValue {
 const PlayerContext = createContext<PlayerContextValue | null>(null)
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
+  const navigate = useNavigate()
   const [slug, setSlug] = useState(featuredPlaylist)
   const [isPlaying, setIsPlaying] = useState(true)
 
@@ -37,12 +40,20 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     setIsPlaying(true)
   }, [])
 
+  const playAndOpen = useCallback(
+    (nextSlug: string) => {
+      play(nextSlug)
+      navigate(`/playlist/${nextSlug}`)
+    },
+    [play, navigate],
+  )
+
   const togglePlay = useCallback(() => setIsPlaying((p) => !p), [])
   const toggle = togglePlay
 
   const value = useMemo(
-    () => ({ current, play, isPlaying, togglePlay, toggle }),
-    [current, play, isPlaying, togglePlay, toggle],
+    () => ({ current, play, playAndOpen, isPlaying, togglePlay, toggle }),
+    [current, play, playAndOpen, isPlaying, togglePlay, toggle],
   )
 
   return createElement(PlayerContext.Provider, { value }, children)

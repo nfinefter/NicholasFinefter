@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils'
 type Tab = 'playlists' | 'liked'
 
 export default function LibraryPage() {
-  const [searchParams] = useSearchParams()
-  const [tab, setTab] = useState<Tab>(() =>
-    searchParams.get('filter') === 'liked' ? 'liked' : 'playlists',
-  )
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tab: Tab = searchParams.get('filter') === 'liked' ? 'liked' : 'playlists'
+  const setTab = (next: Tab) =>
+    setSearchParams(next === 'liked' ? { filter: 'liked' } : {}, { replace: true })
   const { liked, toggle, isLiked } = useLiked()
 
   const items = useMemo(() => {

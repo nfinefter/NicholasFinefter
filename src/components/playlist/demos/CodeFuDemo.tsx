@@ -63,7 +63,7 @@ export function CodeFuDemo() {
       </div>
 
       <p className="mt-4 text-xs text-neutral-500">
-        A simplified version of the message-passing projects my students build.
+        A simplified version of the message-passing projects my students built.
       </p>
     </div>
   )

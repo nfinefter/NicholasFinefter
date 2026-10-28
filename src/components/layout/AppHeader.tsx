@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom'
-import { LogOut } from 'lucide-react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ChevronLeft, LogOut } from 'lucide-react'
+import { EmailButton } from '@/components/ContactEmail'
 import { profiles } from '@/data/portfolio'
 import { useProfile } from '@/hooks/useProfile'
 import { getProfileIcon } from '@/lib/icons'
@@ -7,6 +8,7 @@ import { cn } from '@/lib/utils'
 
 export function AppHeader() {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const { profile, clearProfile } = useProfile()
   const meta = profiles.find((p) => p.id === profile)
 
@@ -17,6 +19,13 @@ export function AppHeader() {
 
   if (!meta) return null
 
+  const showBack = pathname.startsWith('/playlist/') || pathname === '/artist/me'
+  const goBack = () => {
+    // idx > 0 means there is in-app history to go back to
+    if ((window.history.state?.idx ?? 0) > 0) navigate(-1)
+    else navigate('/browse')
+  }
+
   const Icon = getProfileIcon(meta.icon)
 
   return (
@@ -26,6 +35,17 @@ export function AppHeader() {
         'border-b border-white/5 bg-[#121212]/90 px-4 py-3 backdrop-blur-md md:px-8',
       )}
     >
+      {showBack && (
+        <button
+          type="button"
+          onClick={goBack}
+          className="flex size-9 shrink-0 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1ed760]"
+          aria-label="Go back"
+          title="Back"
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+      )}
       <div className="mr-auto flex min-w-0 items-center gap-2">
         <div
           className={cn(
@@ -36,9 +56,12 @@ export function AppHeader() {
           <Icon className="size-3.5 text-white/90" strokeWidth={1.5} />
         </div>
         <span className="truncate text-sm text-neutral-400">
-          <span className="font-medium text-white">{meta.label}</span> perspective
+          <span className="font-medium text-white">{meta.label}</span>
+          <span className="hidden sm:inline"> perspective</span>
         </span>
       </div>
+
+      <EmailButton collapseLabel className="shrink-0 px-3" />
 
       <button
         type="button"
